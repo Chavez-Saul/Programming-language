@@ -202,7 +202,6 @@ def L(lex):
                         return False
         else:
                 return False
-    
 
 ## A : Atom
 def A(lex):
@@ -229,7 +228,6 @@ def A(lex):
                 print("Error: Was expecting a literal but got a \"%s\"." % lex.current_token())
                 return False
         
-
 def main():
         
         MyX = input("Prompt ")
@@ -238,4 +236,3 @@ def main():
             
 if __name__ == "__main__":
     main()
-        
