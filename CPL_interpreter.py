@@ -5,7 +5,7 @@ class lexicon:
         
         def __init__(self, token):
                 self.token = list()
-                self.token.extend(token)
+                self.token = no_whitespace(token.split())
                 self.index = -1
                 self.stack = list()
 
@@ -27,6 +27,16 @@ class lexicon:
         ## onto the stack
         def push(self, literal):
                 self.stack.append(literal)
+
+## no_whitespace: L -> L
+## Given a List of Strings L, where every i is a string associated
+## with a String. Will return a List of Char List2, where every j
+## sis a char from i
+def no_whitespace(L):
+        List2 = list()
+        for i in L:
+                List2.extend(i)
+        return List2
 
 ## IT_Tail_Selection_Set: char -> bool
 ## checks to see if lex is in the selection set for IT_Tail
