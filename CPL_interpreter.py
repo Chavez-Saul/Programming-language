@@ -79,10 +79,12 @@ def boolean_connective_imply(literal1, literal2):
 
 ## B : Bool stmt
 def B(lex):
+        
         lex.get()
+        print("<B> ... %s" % lex.current_token())
         if IT(lex):
                 if lex.current_token() == '.':
-                        print(lex.stack.pop())
+                        print("Answer is %s" % lex.stack.pop())
                         lex.get()
                         return True
                 else:
@@ -93,16 +95,18 @@ def B(lex):
     
 ## IT : Imply term
 def IT(lex):
-    if OT(lex):
-        if IT_Tail(lex):
-                return True
+        print("<IT>... %s" % lex.current_token())
+        if OT(lex):
+                if IT_Tail(lex):
+                        return True
+                else:
+                        return False
         else:
-            return False
-    else:
-        return False
+                return False
     
 ## IT_Tail : Imply tail
 def IT_Tail(lex):
+        print("<IT_Tail>... %s" % lex.current_token())
         if lex.current_token() == '-':
                 lex.get()
                 if lex.current_token() == '>':
@@ -128,6 +132,7 @@ def IT_Tail(lex):
     
 ## OT : Or term
 def OT(lex):
+        print("<OT>... %s" % lex.current_token())
         if AT(lex):
                 if OT_Tail(lex):
                     return True
@@ -139,7 +144,7 @@ def OT(lex):
     
 ## O_Tail : Or tail
 def OT_Tail(lex):
-
+        print("<OT_Tail>... %s" % lex.current_token())
         if lex.current_token() == 'v':
                 lex.get()
                 if AT(lex):
@@ -161,6 +166,7 @@ def OT_Tail(lex):
 
 ## AT : And term
 def AT(lex):
+        print("<AT>... %s" % lex.current_token())
         if L(lex):
                 if AT_Tail(lex):
                         return True
@@ -172,6 +178,7 @@ def AT(lex):
 
 ## AT_Tail : And tail
 def AT_Tail(lex):
+        print("<AT_Tail>... %s" % lex.current_token())
         if lex.current_token() == '^':
                 lex.get()
                 if L(lex):
@@ -196,6 +203,7 @@ def AT_Tail(lex):
 
 ## L : Literal
 def L(lex):
+        print("<L>... %s" % lex.current_token())
         if A(lex):
                 return True
 
@@ -215,7 +223,7 @@ def L(lex):
 
 ## A : Atom
 def A(lex):
-        
+        print("<A>... %s" % lex.current_token())
         if lex.current_token() == '(':
                 lex.get()
                 if IT(lex):
